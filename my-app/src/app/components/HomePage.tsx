@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const HomePage: React.FC = () => {
   return (
@@ -14,9 +15,11 @@ const HomePage: React.FC = () => {
             Add To Cart
           </button>
         </div>
-        <img
-          src="/product2.png"
+        <Image
+          src="/product2.jpg"
           alt="Library Stool Chair"
+          width={500}
+          height={500}
           className="w-full max-w-md h-auto rounded shadow"
         />
       </section>
@@ -27,9 +30,11 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {Array(5).fill(0).map((_, index) => (
             <div key={index} className="text-center">
-              <img
-                src={`/product7-${index + 1}.png`}
+              <Image
+                src={`/images/chair-${index + 1}.jpg`}
                 alt={`Product ${index + 1}`}
+                width={300}
+                height={300}
                 className="w-full h-auto max-w-xs mx-auto rounded shadow"
               />
               <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>

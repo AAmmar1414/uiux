@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
         {/* First Column */}
         <div>
-          <img src="/logo.png" alt="Logo" className="h-12 mb-4" />
+          <Image src="/logo.png" alt="Logo" className="h-12 mb-4" />
           <p className="text-sm">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
           </p>

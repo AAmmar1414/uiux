@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"; // Import Image from next/image
 
 interface ProductProps {
   id: number;
@@ -50,10 +51,12 @@ const TopProducts: React.FC = () => {
             className="relative flex flex-col items-center justify-between bg-gray-200 rounded-lg p-4 shadow-lg w-full sm:w-1/2 md:w-1/3 lg:w-1/4 h-auto"
           >
             {/* Image */}
-            <img
+            <Image
               src={product.imageSrc}
               alt={product.alt}
               className="w-full h-48 object-cover rounded-md mb-4"
+              width={500} // Define the width (adjust as needed)
+              height={300} // Define the height (adjust as needed)
             />
 
             {/* Transparent Black Bar with Product Name */}

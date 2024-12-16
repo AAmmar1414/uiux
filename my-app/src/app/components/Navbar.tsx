@@ -1,11 +1,11 @@
 "use client";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { CiCircleAlert } from "react-icons/ci";
 import { BsCartDash } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 import Link from "next/link";
-
+import Image from "next/image";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="container mx-auto flex justify-between items-center">
             {/* logo */}
             <div className="flex items-center space-x-2 size-10">
-            <img src="/Logo1.png" alt="Comforty Logo"  />
+              <Image src="/Logo1.png" alt="Comforty Logo" width={40} height={40} />
               <span className="text-xl font-bold text-gray-700">Comforty</span>
             </div>
 
@@ -110,4 +110,4 @@ const Navbar = () => {
     );
   };
   
-  export default Navbar;
+  export default Navbar;

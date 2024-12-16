@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const logos = [
   { src: "/icon1.png", alt: "Zapier" },
@@ -20,9 +21,11 @@ const LogoSection: React.FC = () => {
               key={index}
               className="w-24 sm:w-28 md:w-32 flex justify-center"
             >
-              <img
+              <Image
                 src={logo.src}
                 alt={logo.alt}
+                width={128}
+                height={128}
                 className="w-full h-auto object-contain"
               />
             </div>

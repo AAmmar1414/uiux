@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface ProductProps {
   id: number;
@@ -30,14 +31,7 @@ const products: ProductProps[] = [
     description: "Amazing Product 3 with a long description to test overflow handling.",
     price: "$69.99",
   },
-//   {
-//     id: 4,
-//     imageSrc: "/images/product4.jpg",
-//     alt: "Product 4",
-//     description: "Amazing Product 4 with a long description to test overflow handling.",
-//     price: "$79.99",
-//   },
- ];
+];
 
 const FeaturedProducts: React.FC = () => {
   return (
@@ -53,9 +47,11 @@ const FeaturedProducts: React.FC = () => {
             className="flex flex-col items-center justify-between bg-gray-200 rounded-lg p-4 shadow-lg w-full sm:w-1/2 md:w-1/3 lg:w-1/4 h-auto"
           >
             {/* Image */}
-            <img
+            <Image
               src={product.imageSrc}
               alt={product.alt}
+              width={400} // Adjust width
+              height={400} // Adjust height
               className="w-full h-48 object-cover rounded-md mb-4"
             />
 
@@ -78,4 +74,5 @@ const FeaturedProducts: React.FC = () => {
 };
 
 export default FeaturedProducts;
+
 

@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Hero from "./components/Hero";
 import LogoSection from "./components/logosection";
 import FeaturedProducts from "./components/FeaturedProduct";

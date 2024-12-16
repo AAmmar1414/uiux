@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"; // Import Image from next/image
 
 const ProductGrid = () => {
   const products = [
@@ -21,19 +22,23 @@ const ProductGrid = () => {
       {products.map((product) => (
         <div
           key={product.id}
-          className="flex flex-col items-center border p-3 rounded-lg shadow-sm hover:shadow-md bg-white transition-transform transform hover:scale-105"
+          className="relative flex flex-col items-center border p-3 rounded-lg shadow-sm hover:shadow-md bg-white transition-transform transform hover:scale-105"
         >
-         {/* Cart Icon (Bottom Right) with Image */}
-         <div className="absolute bottom-16 right-2 bg-gray-200 p-2 rounded-full shadow-md">
-            <img
+          {/* Cart Icon (Bottom Right) with Image */}
+          <div className="absolute bottom-16 right-2 bg-gray-200 p-2 rounded-full shadow-md">
+            <Image
               src="/cart.png" // Replace with the path to your cart image
               alt="Cart Icon"
-              className="w-6 h-6" // Adjust size as needed
+              width={24} // Adjust size as needed
+              height={24}
+              className="rounded-full"
             />
           </div>
-          <img
+          <Image
             src={product.image}
             alt={product.name}
+            width={300} // Define image width
+            height={200} // Define image height
             className="w-full h-40 md:h-48 object-cover mb-3 rounded-lg"
           />
           <h3 className="text-md md:text-lg font-semibold mb-1 text-black">{product.name}</h3>
@@ -44,7 +49,4 @@ const ProductGrid = () => {
   );
 };
 
-
-
 export default ProductGrid;
-

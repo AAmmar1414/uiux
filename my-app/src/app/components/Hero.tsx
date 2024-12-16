@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Hero: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const Hero: React.FC = () => {
 
       {/* Right Section */}
       <div className="w-full sm:w-1/2 mt-6 sm:mt-0 sm:ml-[130px] flex justify-center">
-        <img
+        <Image
           src="/chair.png" // Make sure to put your image in the public folder
           alt="Chair"
           width={434}
@@ -28,4 +29,5 @@ const Hero: React.FC = () => {
   );
 };
 
-export default Hero;
+export default Hero;
+
