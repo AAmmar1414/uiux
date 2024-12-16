@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const ImageCard: React.FC = () => {
   return (
-    <div className="flex space-x-4 p-6">
+    <div className="flex flex-col md:flex-row space-x-0 md:space-x-4 p-6">
       {/* Left side image */}
-      <div className="flex-1">
+      <div className="flex-1 mb-4 md:mb-0">
         <Image
           src="/img1.png"
           alt="Main Image"
