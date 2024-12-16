@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
           </button>
         </div>
         <Image
-          src="/product2.jpg"
+          src="/product2.png"
           alt="Library Stool Chair"
           width={500}
           height={500}
@@ -24,25 +24,78 @@ const HomePage: React.FC = () => {
         />
       </section>
 
-      {/* Featured Products */}
-      <section className="p-6 md:p-12 bg-gray-100">
-        <h3 className="text-2xl font-semibold mb-6 text-center">FEATURED PRODUCTS</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {Array(5).fill(0).map((_, index) => (
-            <div key={index} className="text-center">
-              <Image
-                src={`/images/chair-${index + 1}.jpg`}
-                alt={`Product ${index + 1}`}
-                width={300}
-                height={300}
-                className="w-full h-auto max-w-xs mx-auto rounded shadow"
-              />
-              <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>
-              <p className="text-teal-600 font-bold">$99</p>
-            </div>
-          ))}
-        </div>
-      </section>
+     {/* Featured Products */}
+<section className="p-6 md:p-12 bg-gray-100">
+  <h3 className="text-2xl font-semibold mb-6 text-center">FEATURED PRODUCTS</h3>
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    {/* Product 1 */}
+    <div className="text-center">
+      <Image
+        src="/product7.png"
+        alt="Product 1"
+        width={300}
+        height={300}
+        className="w-full h-auto max-w-xs mx-auto rounded shadow"
+      />
+      <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>
+      <p className="text-teal-600 font-bold">$99</p>
+    </div>
+
+    {/* Product 2 */}
+    <div className="text-center">
+      <Image
+        src="/product1.png"
+        alt="Product 2"
+        width={300}
+        height={300}
+        className="w-full h-auto max-w-xs mx-auto rounded shadow"
+      />
+      <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>
+      <p className="text-teal-600 font-bold">$99</p>
+    </div>
+
+    {/* Product 3 */}
+    <div className="text-center">
+      <Image
+        src="/Rectangle6.jpg"
+        alt="Product 3"
+        width={300}
+        height={300}
+        className="w-full h-auto max-w-xs mx-auto rounded shadow"
+      />
+      <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>
+      <p className="text-teal-600 font-bold">$99</p>
+    </div>
+
+    {/* Product 4 */}
+    <div className="text-center">
+      <Image
+        src="/product3.png"
+        alt="Product 4"
+        width={300}
+        height={300}
+        className="w-full h-auto max-w-xs mx-auto rounded shadow"
+      />
+      <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>
+      <p className="text-teal-600 font-bold">$99</p>
+    </div>
+
+    {/* Product 5 */}
+    <div className="text-center">
+      <Image
+        src="/product9.png"
+        alt="Product 5"
+        width={300}
+        height={300}
+        className="w-full h-auto max-w-xs mx-auto rounded shadow"
+      />
+      <h4 className="text-gray-700 mt-4">Library Stool Chair</h4>
+      <p className="text-teal-600 font-bold">$99</p>
+    </div>
+  </div>
+</section>
+
+
     </div>
   );
 };
