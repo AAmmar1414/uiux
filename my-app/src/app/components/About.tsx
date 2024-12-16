@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 
 
@@ -14,6 +15,13 @@ const About = () => {
         <button className="mt-4 px-4 py-2 bg-teal-500 text-white rounded">View Collection</button>
       </div>
       <div className="w-1/2">
+      <Image
+          src="/product2.png"
+          alt="Chair"
+          width={600}
+          height={400}
+          className="rounded shadow-md"
+        />
 
       </div>
     </section>
