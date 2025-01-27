@@ -1,50 +1,167 @@
-import React from "react";
-import Image from "next/image"; // Import Image from next/image
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { Product } from "../../../types/products";
+import { client } from "@/sanity/lib/client";
+import { allProducts } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
+import { FaTimes, FaTrash } from "react-icons/fa";
+import Link from "next/link";
 
 const ProductGrid = () => {
-  const products = [
-    { id: 1, image: "/product1.png", name: "Product 1", price: "$10" },
-    { id: 2, image: "/product2.png", name: "Product 2", price: "$20" },
-    { id: 3, image: "/product3.png", name: "Product 3", price: "$30" },
-    { id: 4, image: "/product4.png", name: "Product 4", price: "$40" },
-    { id: 5, image: "/products5.png", name: "Product 5", price: "$50" },
-    { id: 6, image: "/product6.png", name: "Product 6", price: "$60" },
-    { id: 7, image: "/product7.png", name: "Product 7", price: "$70" },
-    { id: 8, image: "/product1.png", name: "Product 8", price: "$80" },
-    { id: 9, image: "/product9.png", name: "Product 9", price: "$90" },
-    { id: 10, image: "/product10.png", name: "Product 10", price: "$100" },
-    { id: 11, image: "/product1.png", name: "Product 11", price: "$110" },
-    { id: 12, image: "/products5.png", name: "Product 12", price: "$120" },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+  const [cart, setCart] = useState<(Product & { quantity: number })[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const fetchedProducts: Product[] = await client.fetch(allProducts);
+      setProducts(fetchedProducts);
+    }
+    fetchProducts();
+
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  const updateCart = (updatedCart: (Product & { quantity: number })[]) => {
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  const addToCart = (product: Product) => {
+    setCart((prevCart) => {
+      // Check if the product already exists in the cart
+      const existingProduct = prevCart.find((item) => item._id === product._id);
+      let updatedCart;
+
+      if (existingProduct) {
+        // If the product already exists, increment its quantity
+        updatedCart = prevCart.map((item) =>
+          item._id === product._id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // Otherwise, add the product with quantity 1
+        updatedCart = [...prevCart, { ...product, quantity: 1 }];
+      }
+
+      // Update localStorage and return the updated cart
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+
+    setIsCartOpen(true); // Open the cart panel
+  };
+
+  const removeFromCart = (productId: string) => {
+    const updatedCart = cart.filter((item) => item._id !== productId);
+    updateCart(updatedCart);
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 sm:gap-6 sm:p-6">
-      {products.map((product) => (
-        <div
-          key={product.id}
-          className="relative flex flex-col items-center border p-3 rounded-lg shadow-sm hover:shadow-md bg-white transition-transform transform hover:scale-105"
-        >
-          {/* Cart Icon (Bottom Right) with Image */}
-          <div className="absolute bottom-16 right-2 bg-gray-200 p-2 rounded-full shadow-md">
-            <Image
-              src="/cart.png" // Replace with the path to your cart image
-              alt="Cart Icon"
-              width={24} // Adjust size as needed
-              height={24}
-              className="rounded-full"
-            />
-          </div>
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={300} // Define image width
-            height={200} // Define image height
-            className="w-full h-40 md:h-48 object-cover mb-3 rounded-lg"
+    <div className="flex">
+      {/* Cart Drawer */}
+      <div
+        className={`fixed top-0 left-0 w-80 bg-gray-50 shadow-xl h-full p-6 transition-transform transform ${
+          isCartOpen ? "translate-x-0" : "-translate-x-full"
+        } z-50`}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold text-purple-600">Your Cart</h2>
+          <FaTimes
+            className="text-gray-600 cursor-pointer hover:text-gray-800 text-lg"
+            onClick={() => setIsCartOpen(false)}
           />
-          <h3 className="text-md md:text-lg font-semibold mb-1 text-black">{product.name}</h3>
-          <p className="text-sm md:text-base text-black">{product.price}</p>
         </div>
-      ))}
+
+        {cart.length > 0 ? (
+          <ul className="space-y-4">
+            {cart.map((item) => (
+              <li key={item._id} className="flex items-center justify-between">
+                <div className="flex items-center">
+                  {item.image && (
+                    <Image
+                      src={urlFor(item.image).url()}
+                      alt={item.title}
+                      className="w-16 h-16 rounded-lg"
+                      width={64}
+                      height={64}
+                    />
+                  )}
+                  <div className="ml-4">
+                    <h3 className="text-md font-semibold text-gray-800">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-purple-500">
+                      ${item.price} x {item.quantity}
+                    </p>
+                  </div>
+                </div>
+                <FaTrash
+                  className="text-red-500 cursor-pointer hover:text-red-700 text-lg"
+                  onClick={() => removeFromCart(item._id)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-gray-600 mt-6">Your cart is empty.</p>
+        )}
+
+        {cart.length > 0 && (
+          <div className="mt-8">
+            <div className="flex justify-between text-gray-800 font-semibold mb-4">
+              <span>Total:</span>
+              <span className="text-purple-600 font-bold">
+                ${calculateTotal().toFixed(2)}
+              </span>
+            </div>
+            <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-4 rounded-lg w-full font-bold hover:opacity-90">
+              Proceed to Checkout
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Product Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 flex-grow">
+        {products.map((product) => (
+          <div
+            key={product._id}
+            className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          >
+        <Link href={`/products/${product.slug.current}`} className="block">
+  {product.image && (
+    <Image
+      src={urlFor(product.image).url()}
+      alt={product.title}
+      width={300}
+      height={200}
+      className="w-full h-40 object-cover mb-3 rounded-lg"
+    />
+  )}
+  <h3 className="text-lg font-semibold mb-2 text-purple-500">{product.title}</h3>
+  <p className="text-gray-800 mb-1">Description: {product.description}</p>
+  <p className="font-bold mb-3 text-purple-600">Price: ${product.price}</p>
+</Link>
+            <button
+              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-4 rounded-lg hover:opacity-90"
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

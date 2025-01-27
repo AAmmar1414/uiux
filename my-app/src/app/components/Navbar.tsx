@@ -38,12 +38,14 @@ const Navbar = () => {
 
             {/* cart */}
             <div className="relative hidden md:flex items-center">
-              <BsCartDash size={30} className="text-gray-700" />
+              <Link href="/cart">
+                <BsCartDash size={30} className="text-gray-700 cursor-pointer" />
+              </Link>
               <span className="absolute top-0 right-0 bg-teal-600 text-white text-xs rounded-full px-1">
                 4
               </span>
             </div>
-  
+
             {/* mobile menu icon */}
             <div className="md:hidden flex items-center">
               <FaBars
@@ -54,29 +56,29 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-  
+
         {/* <!-- section3 menu and contact --> */}
         <div className="hidden md:px-56 md:flex bg-white px-4 py-3">
           <div className="container mx-auto flex justify-between items-center">
             {/* Links */}
             <div className="flex space-x-6 font-thin text-gray-700">
-            <ul className="flex flex-col lg:flex-row lg:space-x-8 justify-center">
-              <li className="py-2 lg:py-0">
-                <Link href="/">Home</Link>
-              </li>
-              <li className="py-2 lg:py-0">
-                <Link href="/Products">Products</Link>
-              </li>
-              <li className="py-2 lg:py-0">
-                <Link href="/Shop">Shop</Link>
-              </li>
-              <li className="py-2 lg:py-0">
-                <Link href="/pages">Pages</Link>
-              </li>
-              <li className="py-2 lg:py-0">
-                <Link href="/about">About</Link>
-              </li>
-            </ul>
+              <ul className="flex flex-col lg:flex-row lg:space-x-8 justify-center">
+                <li className="py-2 lg:py-0">
+                  <Link href="/">Home</Link>
+                </li>
+                <li className="py-2 lg:py-0">
+                  <Link href="/Productss">Products</Link>
+                </li>
+                <li className="py-2 lg:py-0">
+                  <Link href="/Shop">Shop</Link>
+                </li>
+                <li className="py-2 lg:py-0">
+                  <Link href="/pages">Pages</Link>
+                </li>
+                <li className="py-2 lg:py-0">
+                  <Link href="/about">About</Link>
+                </li>
+              </ul>
             </div>
             {/* contact */}
             <div className="text-gray-700">Contact: (808) 555-0111</div>
@@ -104,10 +106,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-  
         )}
       </div>
     );
-  };
-  
-  export default Navbar;
+};
+
+export default Navbar;
