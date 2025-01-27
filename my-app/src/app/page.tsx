@@ -5,9 +5,9 @@ import FeaturedProducts from './components/FeaturedProduct';
 import TopProducts from './components/Topproducts';
 import ImageCard from './components/ImageCard';
 
-const Page = () => {
+export default function Home() {
   return (
-    <div>
+      <div>
       <Hero />
       <LogoSection />
       <FeaturedProducts />
@@ -17,4 +17,3 @@ const Page = () => {
   );
 };
 
-export default Page;

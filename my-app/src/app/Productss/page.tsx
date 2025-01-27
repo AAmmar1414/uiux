@@ -6,7 +6,7 @@ import Instagram from "../components/Instagram";
 export default function Home() {
     return (
         <div>
-           <ProductGird/>  
+           <ProductGird/>
            <Instagram/>
         </div>
     )}
