@@ -4,9 +4,20 @@ import LogoSection from "./components/logosection";
 import FeaturedProducts from "./components/FeaturedProduct";
 import TopProducts from "./components/Topproducts";
 import ImageCard from "./components/ImageCard";
+import ProductGridWithCart from "./components/Productgird";
 
-export default function Home() {
+
+
+
+
+
+export default  function Home() {
+
+
   return (
+
+
+
     <div >
       <Hero/>
       <LogoSection/>
