@@ -25,11 +25,12 @@ async function getProduct(slug: string): Promise<Product | null> {
   }
 }
 
-export default async function ProductsPage({
-  params,
-}: {
+// Ensure the function props align with Next.js's `PageProps` expectation
+interface ProductsPageProps {
   params: { slug: string };
-}) {
+}
+
+export default async function ProductsPage({ params }: ProductsPageProps) {
   const { slug } = params;
   const product = await getProduct(slug);
 
