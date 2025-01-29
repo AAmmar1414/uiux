@@ -150,3 +150,5 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
     </div>
   );
 }
+
+
