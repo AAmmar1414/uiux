@@ -80,7 +80,6 @@ import { groq } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
-import { PageProps } from "next"; // Import PageProps from Next.js
 
 async function getProduct(slug: string): Promise<Product | null> {
   try {
@@ -102,13 +101,14 @@ async function getProduct(slug: string): Promise<Product | null> {
   }
 }
 
-// Use the PageProps type from Next.js
-interface ProductsPageProps extends PageProps {
+// Define the correct props interface
+interface ProductsPageProps {
   params: { slug: string };
 }
 
 export default async function ProductsPage({ params }: ProductsPageProps) {
-  const { slug } = params;
+  // Await the params object before destructuring
+  const { slug } = await params; // Add `await` here
   const product = await getProduct(slug);
 
   if (!product) {
