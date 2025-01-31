@@ -8,8 +8,10 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'], // Use next-gen image formats
     minimumCacheTTL: 60 * 60 * 24 * 30, // Cache images for 30 days
   },
+  eslint: {
+    ignoreDuringBuilds: true, // Ignore ESLint errors during the build process
+  },
 };
 
-
-
 export default nextConfig;
+

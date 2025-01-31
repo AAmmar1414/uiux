@@ -199,16 +199,14 @@ import Image from 'next/image'
 import { groq } from 'next-sanity'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
-import { Button } from '@/components/ui/button'
-import { Star, Truck, ArrowRight } from 'lucide-react'
+import { Truck, ArrowRight } from 'lucide-react'
 import AddToCartButton from '@/app/components/AddtoCart'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { Product } from '../../../../types/products'
 import CustomerReviews from '@/app/components/customerrevies'
 
 interface ProductPageProps {
-  params: { slug: string } // No longer a promise
+  params: { slug: string }
 }
 
 // Fetch product data
@@ -272,7 +270,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Add to Cart & Checkout Buttons */}
           <div className="flex flex-col gap-4">
             <AddToCartButton product={product} />
-
           </div>
 
           {/* Additional Info */}
@@ -289,7 +286,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               ← Back to Products
             </Link>
 
-            <CustomerReviews/>
+            <CustomerReviews />
           </div>
         </div>
       </div>

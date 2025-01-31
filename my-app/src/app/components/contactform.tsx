@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useState } from "react";
 
 const ContactForm = () => {
@@ -37,11 +38,10 @@ const ContactForm = () => {
     <div className="max-w-5xl mx-auto py-10">
       {/* Main Container */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white shadow-md rounded-lg p-8">
-        
         {/* Left Side (Contact Info) */}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold">Get In Touch With Us</h2>
-          <p className="text-gray-600">Contact us for any inquiries or support. We're here to help!</p>
+          <p className="text-gray-600">Contact us for any inquiries or support. We&#39;re here to help!</p>
 
           <div className="space-y-3">
             <div>
@@ -64,17 +64,51 @@ const ContactForm = () => {
         {/* Right Side (Form) */}
         <div>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input type="text" name="name" placeholder="Your Name" required value={formData.name} onChange={handleChange} className="w-full p-2 border rounded" />
-            <input type="email" name="email" placeholder="Email Address" required value={formData.email} onChange={handleChange} className="w-full p-2 border rounded" />
-            <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} className="w-full p-2 border rounded" />
-            <textarea name="message" placeholder="Your Message" required value={formData.message} onChange={handleChange} className="w-full p-2 border rounded"></textarea>
-            <button type="submit" disabled={loading} className="w-full bg-blue-500 text-white p-2 rounded">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              required
+              value={formData.subject}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              required
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            ></textarea>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-blue-500 text-white p-2 rounded"
+            >
               {loading ? "Sending..." : "Submit"}
             </button>
           </form>
           {response && <p className="mt-2 text-center">{response}</p>}
         </div>
-
       </div>
 
       {/* Bottom Section */}
@@ -97,3 +131,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+

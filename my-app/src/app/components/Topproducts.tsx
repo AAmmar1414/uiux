@@ -82,7 +82,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Product } from "../../../types/products";
 import { client } from "@/sanity/lib/client";
-import { four, three } from "@/sanity/lib/queries";
+import { three } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { FaTimes, FaTrash } from "react-icons/fa";
 import Link from "next/link";
