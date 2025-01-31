@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { CiCircleAlert } from "react-icons/ci";
-import { BsCartDash } from "react-icons/bs";
+import { FaShoppingCart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { getCartItems } from "../actions/actions";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -36,15 +37,17 @@ const Navbar = () => {
               <span className="text-xl font-bold text-gray-700">Comforty</span>
             </div>
 
-            {/* cart */}
+
             <div className="relative hidden md:flex items-center">
               <Link href="/cart">
-                <BsCartDash size={30} className="text-gray-700 cursor-pointer" />
+              <FaShoppingCart  size={30} className="text-gray-700 cursor-pointer" />
               </Link>
               <span className="absolute top-0 right-0 bg-teal-600 text-white text-xs rounded-full px-1">
-                4
+
               </span>
             </div>
+
+
 
             {/* mobile menu icon */}
             <div className="md:hidden flex items-center">
@@ -84,7 +87,7 @@ const Navbar = () => {
             <div className="text-gray-700">Contact: (808) 555-0111</div>
           </div>
         </div>
-  
+
         {/* mobile menu */}
         {menuOpen && (
           <div className="md:hidden flex flex-col items-center bg-white py-3 space-y-2 text-gray-700">

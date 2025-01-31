@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero: React.FC = () => {
   return (
@@ -10,9 +11,16 @@ const Hero: React.FC = () => {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
           Best Furniture Collection <br /> For Your Interior.
         </h2>
+
+
         <button className="bg-teal-500 text-white py-3 px-6 rounded-md hover:bg-teal-600 transition">
-          Shop Now →
-        </button>
+  <Link href="/Productss" className="w-full h-full block text-center">
+    Shop Now →
+  </Link>
+</button>
+
+
+
       </div>
 
       {/* Right Section */}
