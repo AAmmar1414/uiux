@@ -11,6 +11,55 @@ import { urlFor } from '@/sanity/lib/image';
 import CustomerReviews from '@/app/components/customerrevies';
 
 
+// interface Product {
+//   _id: string;
+//   title: string;
+//   _type: 'products';
+//   image?: {
+//     asset: {
+//       _ref: string;
+//       _type: 'image';
+//     };
+//   };
+//   price: number;
+//   description: string;
+//   slug: {
+//     _type: 'slug';
+//     current: string;
+//   };
+// }
+
+// async function getProduct(slug: string): Promise<Product | null> {
+//   return await client.fetch(
+//     groq`*[_type == "products" && slug.current == $slug][0]{
+//       _id,
+//       title,
+//       image,
+//       price,
+//       description,
+//       slug
+//     }`,
+//     { slug }
+//   );
+// }
+
+// export default function ProductPage({ params }:Product)   {
+//   const { slug }:{slug:string} = params;
+//   const [product, setProduct] = useState<Product | null>(null);
+//   const [cart, setCart] = useState<(Product & { quantity: number })[]>([]);
+
+//   useEffect(() => {
+//     const fetchProduct = async () => {
+//       const fetchedProduct = await getProduct(slug);
+//       setProduct(fetchedProduct);
+//     };
+
+//     fetchProduct();
+//     const savedCart = localStorage.getItem('cart');
+//     if (savedCart) setCart(JSON.parse(savedCart));
+//   }, [slug]);
+
+
 interface Product {
   _id: string;
   title: string;
@@ -29,6 +78,13 @@ interface Product {
   };
 }
 
+// Correct props interface for the page component
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
 async function getProduct(slug: string): Promise<Product | null> {
   return await client.fetch(
     groq`*[_type == "products" && slug.current == $slug][0]{
@@ -43,8 +99,9 @@ async function getProduct(slug: string): Promise<Product | null> {
   );
 }
 
-export default function ProductPage({ params }:Product)   {
-  const { slug }:{slug:string} = params;
+// Use PageProps instead of Product for the component props
+export default function ProductPage({ params }: PageProps) {
+  const { slug } = params;
   const [product, setProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<(Product & { quantity: number })[]>([]);
 
@@ -59,7 +116,8 @@ export default function ProductPage({ params }:Product)   {
     if (savedCart) setCart(JSON.parse(savedCart));
   }, [slug]);
 
-  const addToCart = (product: Product) => {
+
+const addToCart = (product: Product) => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item._id === product._id);
       let updatedCart;
@@ -170,7 +228,7 @@ export default function ProductPage({ params }:Product)   {
 
 
 
-  
+
         </div>
       </div>
     </div>
