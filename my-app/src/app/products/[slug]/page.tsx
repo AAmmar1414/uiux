@@ -1,7 +1,7 @@
 
 
 'use client';
-import { useState, useEffect } from 'react';
+import { use,useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaArrowRight, FaShoppingCart, FaTruck } from 'react-icons/fa';
 import Link from 'next/link';
@@ -79,10 +79,8 @@ interface Product {
 }
 
 // Correct props interface for the page component
-interface PageProps {
-  params: {
-    slug: string;
-  };
+interface ProductPageProps {
+  params: Promise<{ slug: string }>;
 }
 
 async function getProduct(slug: string): Promise<Product | null> {
@@ -100,8 +98,9 @@ async function getProduct(slug: string): Promise<Product | null> {
 }
 
 // Use PageProps instead of Product for the component props
-export default function ProductPage({ params }: PageProps) {
-  const { slug } = params;
+export default function ProductPage({ params }: ProductPageProps) {
+  // Use React.use() to unwrap params
+  const { slug }: { slug: string } = use(params);
   const [product, setProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<(Product & { quantity: number })[]>([]);
 
