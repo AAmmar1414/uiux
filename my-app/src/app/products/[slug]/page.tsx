@@ -145,7 +145,7 @@ const addToCart = (product: Product) => {
     return (
       <div className="text-center py-12">
         <h1 className="text-2xl font-bold">Product Not Found</h1>
-        <Link href="/Productss" className="text-purple-500 hover:underline">
+        <Link href="/Product" className="text-purple-500 hover:underline">
           ← Back to Products
         </Link>
       </div>
@@ -218,7 +218,7 @@ const addToCart = (product: Product) => {
               <FaArrowRight className="w-6 h-6 text-green-500" />
               <span>30-day hassle-free return policy</span>
             </div>
-            <Link href="/Productss" className="text-purple-500 hover:underline text-lg">
+            <Link href="/Product" className="text-purple-500 hover:underline text-lg">
               ← Back to Products
             </Link>
 

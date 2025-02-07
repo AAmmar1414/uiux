@@ -66,7 +66,7 @@ const Navbar = () => {
                 <Link href="/">Home</Link>
               </li>
               <li className="py-2 lg:py-0">
-                <Link href="/Productss">Products</Link>
+                <Link href="/Product">Products</Link>
               </li>
               <li className="py-2 lg:py-0">
                 <Link href="/shop">Shop</Link>

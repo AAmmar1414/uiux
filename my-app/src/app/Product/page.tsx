@@ -1,5 +1,5 @@
 import React from "react";
-import ProductGird from "../components/Productgird";
+import ProductGird from "../components/Productgrid";
 import Instagram from "../components/Instagram";
 
 
